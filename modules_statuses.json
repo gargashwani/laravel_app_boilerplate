@@ -1,0 +1,6 @@
+{
+    "User": true,
+    "Migration": true,
+    "CreateRolesTable": true,
+    "Superadmin": true
+}
