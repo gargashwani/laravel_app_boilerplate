@@ -1,5 +1,5 @@
 #!/bin/bash
-/etc/init.d/php8.0-fpm start
+/etc/init.d/php8.3-fpm start
 composer install
 # chmod -R 777 /var/www/html
 chmod -R 777 /var/www/html/vendor
@@ -7,7 +7,7 @@ chmod -R 777 /var/www/html/storage
 
 php artisan key:gen
 php artisan migrate
-# npm install 
+# npm install
 # service supervisor start
 # service redis-server start
 # supervisorctl reread

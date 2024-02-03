@@ -1,5 +1,5 @@
 #!/bin/bash
-/etc/init.d/php8.0-fpm start
+/etc/init.d/php8.3-fpm start
 composer update
 php artisan key:gen
 service supervisor start
