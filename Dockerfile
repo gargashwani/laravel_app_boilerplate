@@ -39,7 +39,7 @@ COPY queue-worker.conf /etc/supervisor/conf.d/queue-worker.conf
 COPY horizon.conf /etc/supervisor/conf.d/horizon.conf
 
 # This php.ini file has updated memory_limit
-COPY phpini.conf /etc/php/8.0/fpm/php.ini
+COPY phpini.conf /etc/php/8.3/fpm/php.ini
 #RUN composer update
 #RUN composer install
 
