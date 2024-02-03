@@ -31,13 +31,9 @@ RUN apt-get update && apt-get install -y \
         php8.3-bcmath \
         # nodejs \
         # npm \
-        # apache2 \
         nginx \
         libapache2-mod-php8.3
 
-#COPY . . test
-# COPY app.conf /etc/apache2/sites-available/
-# COPY apache2.conf /etc/apache2/apache2.conf
 COPY app.conf /etc/nginx/sites-enabled/default
 COPY queue-worker.conf /etc/supervisor/conf.d/queue-worker.conf
 COPY horizon.conf /etc/supervisor/conf.d/horizon.conf
