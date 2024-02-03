@@ -1,0 +1,2 @@
+#include
+* * * * * cd /var/www/html && /usr/bin/php artisan schedule:run

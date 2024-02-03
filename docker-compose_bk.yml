@@ -1,0 +1,20 @@
+version: "3"
+services:
+  api_local:
+    container_name: api_local
+    restart: always
+    build: .
+    command: bash -c "./script.sh && crontab /var/www/html/crontabs"
+    networks:
+       - api_local
+    volumes:
+       - ./:/var/www/html/
+    ports:
+    - "8070:80"
+    environment:
+    - TZ=Asia/Kolkata
+
+# #Docker Networks
+networks:
+  api_local:
+    driver: bridge

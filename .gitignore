@@ -18,3 +18,7 @@ yarn-error.log
 /.idea
 /.vscode
 composer.lock
+/aws
+/awscliv2.zip
+docker-compose.yml
+./Dockerfile
