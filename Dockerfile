@@ -40,9 +40,6 @@ COPY horizon.conf /etc/supervisor/conf.d/horizon.conf
 
 # This php.ini file has updated memory_limit
 COPY phpini.conf /etc/php/8.3/fpm/php.ini
-#RUN composer update
-#RUN composer install
 
 CMD ["php-fpm"]
-#ENTRYPOINT ["/bin/sh","/var/www/html/script.sh"]
 
