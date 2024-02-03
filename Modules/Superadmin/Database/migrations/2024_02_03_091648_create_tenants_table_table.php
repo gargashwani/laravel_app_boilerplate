@@ -15,8 +15,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('owner_name')->nullable();
             $table->string('owner_email')->nullable();
-            $table->string('domain');
-            $table->string('organization_name');
+            $table->string('domain')->nullable();
+            $table->string('organization_name')->nullable();
             $table->timestamps();
         });
     }

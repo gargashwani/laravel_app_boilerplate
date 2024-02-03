@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('role_permissions', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->bigInteger('role_id')->nullable();
             $table->bigInteger('module_id')->nullable();
             $table->enum('enabled',["true", "false"])->default("false");

@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Modules\User\App\Http\Controllers\AuthController;
+use Modules\User\App\Http\Controllers\RegisterController;
 
 /*
     |--------------------------------------------------------------------------
@@ -14,6 +16,5 @@ use Illuminate\Support\Facades\Route;
     |
 */
 
-Route::middleware(['auth:sanctum'])->prefix('v1')->name('api.')->group(function () {
-    Route::get('user', fn (Request $request) => $request->user())->name('user');
-});
+Route::post('login', [AuthController::class, 'login'])->name('login');
+Route::post('register', [RegisterController::class, 'register'])->name('register');
