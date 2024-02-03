@@ -51,7 +51,7 @@ class RegisterController extends Controller
             $user->phone = $payload['phone'] ?? '';
             $user->visitor = $_SERVER['REMOTE_ADDR'] ?? '';
             $user->password =  bcrypt($payload['password']);  // Use your password hashing method
-            $user->tenant_id =  $tenant->id;  // Use your password hashing method
+            $user->tenant_id =  $tenant->id;
             $user->save();
 
             // if tenant email already exists, then return a json response with error message, that this email already exists as a tenant.
