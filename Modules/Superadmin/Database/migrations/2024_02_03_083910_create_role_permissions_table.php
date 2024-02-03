@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('role_id')->nullable();
             $table->bigInteger('module_id')->nullable();
-            $table->enum('enabled',[true, false])->default(false);
+            $table->enum('enabled',["true", "false"])->default("false");
             $table->timestamps();
         });
     }

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tenant_databases', function (Blueprint $table) {
+        Schema::create('tenant_db_configs', function (Blueprint $table) {
             $table->id();
             $table->uuid('tenant_id')->nullable();
             $table->string('db_url')->nullable();
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tenant_databases_table');
+        Schema::dropIfExists('tenant_db_configs');
     }
 };

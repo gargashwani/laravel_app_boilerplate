@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tenants_table', function (Blueprint $table) {
+        Schema::create('tenants', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('owner_name')->nullable();
             $table->string('owner_email')->nullable();
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tenants_table');
+        Schema::dropIfExists('tenants');
     }
 };
