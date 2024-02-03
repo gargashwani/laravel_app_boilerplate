@@ -6,8 +6,10 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use Modules\User\App\Emails\VerifyEmail;
 use Modules\Superadmin\App\Models\Tenant;
 
 class RegisterController extends Controller
@@ -54,10 +56,17 @@ class RegisterController extends Controller
             $user->tenant_id =  $tenant->id;
             $user->save();
 
-            // if tenant email already exists, then return a json response with error message, that this email already exists as a tenant.
-            if (!$tenant) {
-                return response()->json(['error' => 'Tenant with this email already exists.'], 422);
+            if($user){
+                // send verification email to user to verify the email address.
+                // Generate a verification link (you can use Laravel's built-in functions for this)
+                $verificationLink = url('/verify-email/' . $user->id);
+                // Send the verification email
+                Mail::to($user->email)->send(new VerifyEmail($verificationLink));
             }
+
+            // inform the user about the verification email.
+            return response()->json(['message' => 'A verification email has been sent to your email address.']);
+
 
             // if tenant email does not exist, then create a new tenant and return a json response with success message, that the tenant was created successfully.
             DB::commit();
