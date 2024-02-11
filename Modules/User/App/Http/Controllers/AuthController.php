@@ -29,12 +29,13 @@ class AuthController extends Controller
     {
         try {
             $credentials = request(['email', 'password']);
-            auth()->attempt($credentials);
-            $user = JWTAuth::user();
-            $token = JWTAuth::fromUser($user);
-            if (!$user) {
+            $doLogin = auth()->attempt($credentials);
+            if($doLogin == false)
+            {
                 return response()->json(['error' => 'Unauthorized'], 401);
             }else {
+                $user = JWTAuth::user();
+                $token = JWTAuth::fromUser($user);
                 return response()->json([
                     'status' => 'success',
                     'message' => 'Login successfully',
