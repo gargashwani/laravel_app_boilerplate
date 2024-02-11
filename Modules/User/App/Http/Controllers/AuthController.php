@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
@@ -26,13 +27,34 @@ class AuthController extends Controller
      */
     public function login()
     {
-        $credentials = request(['email', 'password']);
-
-        if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+        try {
+            $credentials = request(['email', 'password']);
+            auth()->attempt($credentials);
+            $user = JWTAuth::user();
+            $token = JWTAuth::fromUser($user);
+            if (!$user) {
+                return response()->json(['error' => 'Unauthorized'], 401);
+            }else {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Login successfully',
+                    'token_type' => 'bearer',
+                    'expires_in' => 6000, // Token expiration time in minutes
+                    'user' => auth()->user()->name,
+                    'user_id' => auth()->user()->id,
+                    'user_email' => auth()->user()->email,
+                    'user_role' => auth()->user()->role,
+                    'user_status' => auth()->user()->status,
+                    'user_created_at' => auth()->user()->created_at,
+                    'user_updated_at' => auth()->user()->updated_at,
+                    'access_token' => $token,
+                ]);
+            }
+                    // Generate a token for the user
+        } catch (\Exception $e) {
+            dd($e);
+            return response()->json(['error' => $e->getMessage()], 401);
         }
-
-        return $this->respondWithToken($token);
     }
 
     /**
@@ -79,7 +101,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in' => 6000
         ]);
     }
 }

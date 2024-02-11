@@ -64,16 +64,14 @@ class RegisterController extends Controller
                 Mail::to($user->email)->send(new VerifyEmail($verificationLink));
             }
 
-            // inform the user about the verification email.
-            return response()->json(['message' => 'A verification email has been sent to your email address.']);
-
-
             // if tenant email does not exist, then create a new tenant and return a json response with success message, that the tenant was created successfully.
             DB::commit();
-            return response()->json(['message' => 'Tenant created successfully.']);
+
+            // inform the user about the verification email.
+            return response()->json(['message' => 'A verification email has been sent to your email address.']);
         } catch (\Exception $e) {
-            DB::rollBack();
             dd($e);
+            DB::rollBack();
         }
     }
 }
