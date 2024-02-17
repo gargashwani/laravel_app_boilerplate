@@ -51,9 +51,7 @@ class AuthController extends Controller
                     'access_token' => $token,
                 ]);
             }
-                    // Generate a token for the user
         } catch (\Exception $e) {
-            dd($e);
             return response()->json(['error' => $e->getMessage()], 401);
         }
     }
