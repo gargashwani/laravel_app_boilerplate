@@ -6,7 +6,7 @@ chmod -R 777 /var/www/html/vendor
 chmod -R 777 /var/www/html/storage
 
 php artisan key:gen
-php artisan migrate
+
 # npm install
 service supervisor start
 service redis-server start
