@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tenant_db_configs', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->uuid('id')->primary();
             $table->uuid('tenant_id')->nullable();
             $table->string('db_url')->nullable();
             $table->string('db_name')->nullable();
