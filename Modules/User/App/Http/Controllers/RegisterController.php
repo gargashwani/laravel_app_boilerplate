@@ -14,6 +14,9 @@ use Modules\Superadmin\App\Models\Tenant;
 
 class RegisterController extends Controller
 {
+    /***
+     * Method POST
+     */
     public function register(Request $request): JsonResponse
     {
         DB::beginTransaction();
