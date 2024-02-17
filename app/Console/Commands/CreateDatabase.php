@@ -81,12 +81,12 @@ class CreateDatabase extends Command
             // Here User is the Module name. Which needs to be migrated.
             $modules = "User ";
 
-            $migration = "module:migrate --database '.$database.' '.$modules";
+            $migration = "module:migrate --database ".$database." ".$modules;
             Artisan::call($migration);
             dump("Migrations executed");
 
             // Run seeders for that database.
-            $seeding = "module:seed  --database '.$database.' '.$modules";
+            $seeding = 'module:seed  --database '.$database.' '.$modules;
             Artisan::call($seeding);
             dump("Seeders executed.");
 
