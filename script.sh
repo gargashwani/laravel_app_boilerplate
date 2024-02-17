@@ -8,13 +8,13 @@ chmod -R 777 /var/www/html/storage
 php artisan key:gen
 php artisan migrate
 # npm install
-# service supervisor start
-# service redis-server start
-# supervisorctl reread
-# supervisorctl update
-# supervisorctl start queue-worker:*
-# supervisorctl start horizon:*
-# supervisorctl status queue-worker:*
+service supervisor start
+service redis-server start
+supervisorctl reread
+supervisorctl update
+supervisorctl start queue-worker:*
+supervisorctl start horizon:*
+supervisorctl status queue-worker:*
 
 service cron start
 service nginx start
