@@ -16,7 +16,7 @@ return [
     */
 
     'default' => env('DB_CONNECTION', 'mysql'),
-
+    'tenant_db_prefix' => env('TENANT_DB_PREFIX', 'crm_'),
     /*
     |--------------------------------------------------------------------------
     | Database Connections
