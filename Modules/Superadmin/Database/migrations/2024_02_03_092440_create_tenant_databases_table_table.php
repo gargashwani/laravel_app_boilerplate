@@ -15,10 +15,10 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('tenant_id')->nullable();
             $table->string('db_url')->nullable();
-            $table->string('db_name')->nullable();
-            $table->string('db_host')->nullable();
-            $table->string('db_user')->nullable();
-            $table->string('db_pass')->nullable();
+            $table->string('database')->nullable();
+            $table->string('host')->nullable();
+            $table->string('username')->nullable();
+            $table->string('password')->nullable();
             $table->string('server_id')->default('1');
             $table->timestamps();
         });

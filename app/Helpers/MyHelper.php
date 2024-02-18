@@ -3,6 +3,7 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
 
 class MyHelper
@@ -22,13 +23,14 @@ class MyHelper
 
     public static function connectTenantDB($tenant_db){
             $database = $tenant_db['database'];
-            $hostname = $tenant_db['hostname'];
+            $host = $tenant_db['host'];
             $username = $tenant_db['username'];
             $password = $tenant_db['password'];
+
             // Configure connection with new database.
             Config::set("database.connections.$database", [
             'driver' => 'mysql',
-            'host' => $hostname,
+            'host' => $host,
             'port' => env('DB_PORT', '3306'),
             'database' => $database,
             'username' => $username,
@@ -39,5 +41,10 @@ class MyHelper
             'strict' => true,
         ]);
         Config::set('database.default', $database);
+    }
+
+    public static function getAllDatabases(){
+        // Get all the database from tenant_db_configs table.
+        return DB::table('tenant_db_configs')->get();
     }
 }

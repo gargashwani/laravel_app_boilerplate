@@ -32,7 +32,7 @@ class CreateDatabase extends Command
     {
 
         // Create new database, if there are less than 10 unused databases in the stock.
-        $unused_databases = DB::connection('superadmin')->table('tenant_db_configs')->where('tenant_id', NULL)->count();
+        $unused_databases = DB::connection('superadmin')->table('tenant_db_configs')->where('tenant_id', null)->count();
         if ($unused_databases < 10) {
             $this->create_database();
             dump("Database created successfully");
@@ -55,15 +55,15 @@ class CreateDatabase extends Command
             $database = config('database.tenant_db_prefix').time();
             $username = config('database.connections.mysql.username');
             $password = config('database.connections.mysql.password');
-            $hostname = config('database.connections.mysql.host');
+            $host = config('database.connections.mysql.host');
             $tenant_db = [
                 'database' =>$database,
                 'username' =>$username,
                 'password' =>$password,
-                'hostname' =>$hostname
+                'host' =>$host
             ];
 
-            $command = "mysql -u $username -p$password -h $hostname -e 'CREATE DATABASE IF NOT EXISTS $database'";
+            $command = "mysql -u $username -p$password -h $host -e 'CREATE DATABASE IF NOT EXISTS $database'";
             exec($command);
             dump("Database created");
 
@@ -84,10 +84,10 @@ class CreateDatabase extends Command
             // Insert newly created database details in the tenant_db_configs table as well.
             $array = [
                 'id'=>Str::uuid(),
-                'db_name'=>$database,
-                'db_host'=>$hostname,
-                'db_user'=>$username,
-                'db_pass'=>$password,
+                'host'=>$host,
+                'database'=>$database,
+                'username'=>$username,
+                'password'=>$password,
             ];
             DB::connection('superadmin')->table('tenant_db_configs')->insert($array);
 
