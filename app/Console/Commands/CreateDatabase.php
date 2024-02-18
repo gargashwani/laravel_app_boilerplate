@@ -2,11 +2,12 @@
 
 namespace App\Console\Commands;
 
+use App\Helpers\MyHelper;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
 
 class CreateDatabase extends Command
 {
@@ -37,6 +38,7 @@ class CreateDatabase extends Command
             dump("Database created successfully");
             return 0; // Exit code 0 means everything went fine.
         }
+        dump("10 databases are already there in the stock!");
         return 0; // Exit code 0 means everything went fine.
     }
 
@@ -54,32 +56,21 @@ class CreateDatabase extends Command
             $username = config('database.connections.mysql.username');
             $password = config('database.connections.mysql.password');
             $hostname = config('database.connections.mysql.host');
+            $tenant_db = [
+                'database' =>$database,
+                'username' =>$username,
+                'password' =>$password,
+                'hostname' =>$hostname
+            ];
 
             $command = "mysql -u $username -p$password -h $hostname -e 'CREATE DATABASE IF NOT EXISTS $database'";
-            $this->info("Executing command: $command");
             exec($command);
             dump("Database created");
 
-            // Configure connection with new database.
-            Config::set("database.connections.$database", [
-                'driver' => 'mysql',
-                'host' => $hostname,
-                'port' => env('DB_PORT', '3306'),
-                'database' => $database,
-                'username' => $username,
-                'password' => $password,
-                'charset' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_ci',
-                'prefix' => '',
-                'strict' => true,
-            ]);
-            Config::set('database.default', $database);
-            // dd(DB::connection());
+            MyHelper::connectTenantDB($tenant_db);
 
-            // Run migrations for that database.
-            // This syntax is from nwidart module.
-            // Here User is the Module name. Which needs to be migrated.
-            $modules = "User ";
+            // Get module names
+            $modules = MyHelper::getModules();
 
             $migration = "module:migrate --database ".$database." ".$modules;
             Artisan::call($migration);
@@ -105,4 +96,6 @@ class CreateDatabase extends Command
             dd($e);
         }
     }
+
+
 }
