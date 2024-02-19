@@ -1,4 +1,6 @@
 {
     "User": true,
-    "Superadmin": true
+    "Superadmin": true,
+    "Organization": true,
+    "Lead": true
 }
