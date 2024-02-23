@@ -16,6 +16,9 @@ class TenantController extends Controller
     {
         // Create Tenant with all the required data.
         // Return Tenant ID
+        return response()->json([
+            'status' => true,
+        ]);
     }
 
 }
