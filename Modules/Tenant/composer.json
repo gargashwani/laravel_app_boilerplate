@@ -1,5 +1,5 @@
 {
-    "name": "nwidart/organization",
+    "name": "nwidart/tenant",
     "description": "",
     "authors": [
         {
@@ -17,15 +17,15 @@
     },
     "autoload": {
         "psr-4": {
-            "Modules\\Organization\\": "",
-            "Modules\\Organization\\App\\": "app/",
-            "Modules\\Organization\\Database\\Factories\\": "database/factories/",
-            "Modules\\Organization\\Database\\Seeders\\": "database/seeders/"
+            "Modules\\Tenant\\": "",
+            "Modules\\Tenant\\App\\": "app/",
+            "Modules\\Tenant\\Database\\Factories\\": "database/factories/",
+            "Modules\\Tenant\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Modules\\Organization\\Tests\\": "tests/"
+            "Modules\\Tenant\\Tests\\": "tests/"
         }
     }
 }

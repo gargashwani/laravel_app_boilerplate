@@ -1,15 +1,15 @@
 <?php
 
-namespace Modules\Organization\App\Providers;
+namespace Modules\Tenant\App\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
-class OrganizationServiceProvider extends ServiceProvider
+class TenantServiceProvider extends ServiceProvider
 {
-    protected string $moduleName = 'Organization';
+    protected string $moduleName = 'Tenant';
 
-    protected string $moduleNameLower = 'organization';
+    protected string $moduleNameLower = 'tenant';
 
     /**
      * Boot the application events.

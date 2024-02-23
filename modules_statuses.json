@@ -1,6 +1,6 @@
 {
     "User": true,
     "Superadmin": true,
-    "Organization": true,
-    "Lead": true
+    "Lead": true,
+    "Tenant": true
 }

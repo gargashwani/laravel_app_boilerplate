@@ -14,6 +14,6 @@ use Modules\Superadmin\App\Http\Controllers\SuperadminController;
 |
 */
 
-Route::group([], function () {
-    Route::resource('superadmin', SuperadminController::class)->names('superadmin');
-});
+// Route::group([], function () {
+//     Route::resource('superadmin', SuperadminController::class)->names('superadmin');
+// });

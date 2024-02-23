@@ -14,6 +14,6 @@ use Modules\Lead\App\Http\Controllers\LeadController;
 |
 */
 
-Route::group([], function () {
-    Route::resource('lead', LeadController::class)->names('lead');
-});
+// Route::group([], function () {
+//     Route::resource('lead', LeadController::class)->names('lead');
+// });

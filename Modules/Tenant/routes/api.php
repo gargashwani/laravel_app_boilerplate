@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Modules\Tenant\App\Http\Controllers\V1\TenantController;
 
 /*
     |--------------------------------------------------------------------------
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\Route;
     |
 */
 
-Route::middleware(['auth:sanctum'])->prefix('v1')->name('api.')->group(function () {
-    Route::get('organization', fn (Request $request) => $request->user())->name('organization');
+Route::middleware(['jwt.auth'])->prefix('v1')->name('api.')->group(function () {
+    Route::group(['prefix' => 'tenant'], function () {
+        // Route to create new tenant
+        Route::post('create', [TenantController::class, "create_tenant"])->name('tenant.create');
+    } );
 });

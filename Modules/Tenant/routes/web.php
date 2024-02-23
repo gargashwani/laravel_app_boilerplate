@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Organization\App\Http\Controllers\OrganizationController;
+use Modules\Tenant\App\Http\Controllers\V1\TenantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +14,6 @@ use Modules\Organization\App\Http\Controllers\OrganizationController;
 |
 */
 
-Route::group([], function () {
-    Route::resource('organization', OrganizationController::class)->names('organization');
-});
+// Route::group([], function () {
+//     Route::resource('tenant', TenantController::class)->names('tenant');
+// });
