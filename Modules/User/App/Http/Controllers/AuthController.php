@@ -37,7 +37,8 @@ class AuthController extends Controller
                 $user = JWTAuth::user();
                 $token = JWTAuth::fromUser($user);
                 $user->abilities = [
-                    'manage'=>'all',
+                    'action'=>'manage',
+                    'subject'=>'all',
                 ];
                 return response()->json([
                     'status' => 'success',
@@ -47,12 +48,12 @@ class AuthController extends Controller
                     'user' => auth()->user()->name,
                     'user_id' => auth()->user()->id,
                     'user_email' => auth()->user()->email,
-                    'user_role' => auth()->user()->role ?? "admin",
+                    'user_role' => auth()->user()->role ?? "no-role",
                     'user_status' => auth()->user()->status,
                     'user_created_at' => auth()->user()->created_at,
                     'user_updated_at' => auth()->user()->updated_at,
                     'access_token' => $token,
-                    'abilities' => $user->abilities,
+                    'abilities' => [$user->abilities],
                 ]);
             }
         } catch (\Exception $e) {
