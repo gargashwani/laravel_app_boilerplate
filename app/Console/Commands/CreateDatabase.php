@@ -33,7 +33,7 @@ class CreateDatabase extends Command
 
         // Create new database, if there are less than 10 unused databases in the stock.
         $unused_databases = DB::connection('superadmin')->table('tenant_db_configs')->where('tenant_id', null)->count();
-        if ($unused_databases < 10) {
+        if ($unused_databases > 9) {
             $this->create_database();
             dump("Database created successfully");
             return 0; // Exit code 0 means everything went fine.
